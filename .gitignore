@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Dados (não versionamos dados — ficam só no Google Drive)
+data/raw/*.csv
+data/bronze/**
+data/silver/**
+data/gold/**
+!data/**/.gitkeep
+
+# Ambiente
+.env
