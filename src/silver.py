@@ -95,7 +95,11 @@ def transformar_silver(df_bronze: pd.DataFrame) -> pd.DataFrame:
 
     df['faixa_renda'] = df['renda_codigo'].apply(classificar_faixa_renda)
     df['renda_descricao'] = df['renda_codigo'].map(DICT_Q006)
-    df['tipo_escola'] = df['tipo_escola_codigo'].map({1: 'Pública', 2: 'Pública', 3: 'Privada'})
+
+    # TP_ESCOLA no dado real do INEP: 1 = Não respondeu, 2 = Pública, 3 = Privada
+    # (diferente da suposição inicial no gerador sintético, que usava 1=Federal)
+    df['tipo_escola'] = df['tipo_escola_codigo'].map({1: 'Não informado', 2: 'Pública', 3: 'Privada'})
+
     df['regiao'] = df['uf'].map(REGIAO_POR_UF)
 
     return df
